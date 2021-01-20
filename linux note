@@ -1,0 +1,21 @@
+
+//DB导入/导出文件
+bcp A_MNP_BACK out "f:\data1.dat" -c -t -S "(local)" -d MNP -U "sa" -P "123456"
+bcp A_MNP_BACK1 in "f:\data1.dat" -c -t -S "(local)" -d MNP -U "sa" -P "123456"
+bcp "SELECT ID, PHONE, SRCTYPE, PHONETYPE, OPTYPE, MNPTIME, ADDTIME, OPUSER, MEMO FROM A_MNP WITH (NOLOCK)" queryout "d:\mnp.dat" -c -t -S "(local)" -d MNP -U "sa" -P "123456"
+bcp A_MNP in "d:\mnp.dat" -c -t -S "(local)" -d MNP -U "sa" -P "123456"
+
+//
+zcat *.gz | wc -l
+
+//
+tcpdump -i em3 tcp port 9698 -w s.cap
+sz s.cap
+
+//查看某个端口的连接数
+netstat -nat | grep -iw "9090" | wc -l
+
+//查看连接状况
+netstat -nat | grep -iw "9090"
+
+
